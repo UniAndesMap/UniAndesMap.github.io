@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+  <meta name="author" content="BogoMap Team, Proyecto Curuba" />
+  <meta name="description" content="Mapa de rutas de buses cerca de los Andes " />
+  <meta name="keywords" content="Bus, Buses, Rutas, Ruta, Transporte, Colombia, Bogotá, OpenStreetMap, Transporte público, Datos Abiertos, Open Data, Universidad de los Andes" />
+  <meta name="Content-Language" content="es" />
+  <meta property="og:site_name" content="AndesMap - Rutas de buses cercanas a la Universidad de los Andes"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="AndesMap - Rutas de buses cercanas a la Universidad de los Andes"/>
+  <meta property="og:description" content="Mapa de rutas de buses cerca de los Andes "/>
+  <meta property="og:locale" content="es_CO"/>
+  <meta property="og:url" content="https://uniandesmap.github.io"/>
+
+  <title>AndesMap - Rutas de buses cercanas a la Universidad de los Andes</title>
+
+  <script src="/theme/js/jquery.js"></script>
+  <script src="/theme/js/leaflet.js"></script>
+  <script src="/theme/js/leaflet/leaflet-hash.js"></script>
+  <script src="/theme/js/leaflet/ActiveLayers.js"></script>
+  <script src="/theme/js/leaflet/leaflet.ajax.js"></script>
+  <script src="/theme/js/leaflet/leaflet.label.js"></script>
+  <script src="/theme/js/modal.js"></script>
+  <script src="/theme/js/search.js"></script>
+  <script src="/theme/js/report-form.js"></script>
+
+
+  <link rel="stylesheet" href="/theme/css/leaflet.css" type="text/css" />
+  <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css" />
+  <![endif]-->
+  <link rel="stylesheet" href="/theme/js/leaflet/zoomslider/L.Control.Zoomslider.css" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="https://uniandesmap.github.io/theme/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="https://uniandesmap.github.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="https://uniandesmap.github.io/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/theme/css/leaflet.label.css" type="text/css" />
+
+
+  <link rel="stylesheet/less" type="text/css" href="https://uniandesmap.github.io/theme/css/style.less">
+  <script src="/theme/js/less.min.js" type="text/javascript"></script>
+
+  <link rel="shortcut icon" href="https://uniandesmap.github.io/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://uniandesmap.github.io/images/favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+
+      <!-- BRANDING -->
+      <div class="branding">
+        <h1 class="site-title"><span class="subdomain">Rutas </span>UniAndes<span></span>
+        <h3 class="site-subtitle">Transporte Urbano cerca de los Andes, Bogotá, Colombia</h3>
+      </div>
+
+<nav>
+  <ul id="main-menu">
+      <li class="menu-item link-public-transport"><a class="active" href="/index.html"><span>Rutas Duitamap</span></a></li>
+      <li class="menu-item link-community"><a  href="http://BogoMap.co"><span>BogoMap</span></a></li>
+  </ul>
+</nav>
+  </header>  <div class="info-wrapper">
+    <div class="info-box">
+      <div class="info-header">
+        <h3 class="ref"></h3>
+        <div class="destination">
+          <span class="from"></span><br />
+          <span class="to"></span>
+        </div>
+        <span id="info-expander" class="fa fa-chevron-down"></span>
+      </div>
+
+      <div class="official">
+        <span class="operator"></span><br />
+      </div>
+      <div class="stop-overview">
+        <br /><br />
+        <i>Éste mapa es un trabajo colectivo en proceso. Y vos podés apoyar. Si ves una parada que se llama diferente, falta o no tenemos el nombre, avisanos haciendo click en el <span class="fa fa-envelope"></span> abajo.</i>
+        <div class="variant-one">
+          <h4></h4>
+          <ul></ul>
+        </div>
+        <div class="variant-two">
+          <h4></h4>
+          <ul></ul>
+        </div>
+        <div class="stop-legend">
+          <h4>Leyenda</h4>
+          <ul>
+            <li class="stop-official"> Parada oficial (con rótulo)</li>
+            <li class="stop-popular"> Parada popular</li>
+            <li class="stop-unknown"> Estado de parada desconocido</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main id="map-wrapper">
+    <!-- MAP -->
+     <div id="map">
+     </div>
+
+     <!-- <div id="bus-lines-toggle">></div>  -->
+     <div id="bus-lines-wrapper">
+       <div class="bus-lines-control" id="bus-lines-control-top"><img src="/images/scroller-up.png" /></div>
+       <div id="bus-lines">
+         <a href="?ruta=314" class="bus-line-link lines-central ruta-314">314</a>
+       </div>
+       <div class="bus-lines-control" id="bus-lines-control-bottom"><img src="/images/scroller-down.png" /></div>
+     </div>
+
+<!-- SEARCH FORM -->
+<div id="report">
+  <span class="fa fa-envelope"></span>
+</div><!-- SEARCH FORM -->
+<div id="searchlink">
+  <span class="fa fa-search"></span>
+</div>
+
+<div id="searchform">
+  <form>
+    <input type="text" name="search-string" value="" id="search-string" placeholder="Buscar" >
+    <span class="button">
+      <button type="submit" class="btn" id="search"><span class="fa fa-search"></span></button>
+    </span>
+  </form>
+</div><ul class="social">
+  <li><a class="social-email" href="mailto:contacto@bogomap.co"></a></li>
+  <li><a class="social-facebook" href="http://www.facebook.com/BogoMap"></a></li>
+  <li><a class="social-twitter" href="http://www.twitter.com/bogomap"></a></li>
+</ul>
+  </main>
+  <!-- <footer></footer> -->
+
+  <script src="/theme/js/public-transport.js"></script>
+<!-- Piwik -->
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.delattre.de/" : "http://stats.delattre.de/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 5);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://stats.delattre.de/piwik.php?idsite=5" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Blog",
+      "name": " AndesMap - Rutas de buses cercanas a la Universidad de los Andes ",
+      "url" : "https://uniandesmap.github.io",
+      "image": "",
+      "description": "Mapa de rutas de buses cerca de los Andes "
+    }
+  </script>
+</body>
+</html>

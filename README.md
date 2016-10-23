@@ -1,1 +1,0 @@
-# UniAndesMap.github.io
